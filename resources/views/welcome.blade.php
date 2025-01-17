@@ -118,7 +118,7 @@
                                     <h2 class="text-xl font-semibold text-black dark:text-white">Laracasts</h2>
 
                                     <p class="mt-4 text-sm/relaxed">
-                                       Manage by Minhajul Islam test pull request for git 
+                                       Manage by Minhajul Islam 
                                     </p>
                                 </div>
 
