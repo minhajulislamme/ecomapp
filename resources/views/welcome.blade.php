@@ -118,7 +118,7 @@
                                     <h2 class="text-xl font-semibold text-black dark:text-white">Laracasts</h2>
 
                                     <p class="mt-4 text-sm/relaxed">
-                                       Manage by Minhajul Islam 
+                                       Manage by Minhajul Islam  2025
                                     </p>
                                 </div>
 
