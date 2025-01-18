@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
-
-
 class VendorController extends Controller
 {
     public function VendorDashboard()
@@ -44,6 +42,8 @@ class VendorController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->address = $request->address;
+        $user->join_date = $request->join_date;  
+        $user->description = $request->description;
         if ($request->file('photo')) {
             $file = $request->file('photo');
             @unlink(public_path('upload/vendor_images/' . $user->photo));

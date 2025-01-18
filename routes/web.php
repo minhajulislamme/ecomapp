@@ -8,7 +8,7 @@ use App\Http\Controllers\VendorController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
 Route::get('/dashboard', function () {
