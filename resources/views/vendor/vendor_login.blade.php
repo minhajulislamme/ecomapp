@@ -34,16 +34,16 @@
 							<div class="card-body">
 								<div class="border p-4 rounded">
 									<div class="text-center">
-										<h3 class=""> Admin Sign in</h3>
-										
+										<h3 class=""> Vendor Sign in</h3>
+
 									</div>
-									
+
 									<div class="form-body">
 										<form class="row g-3" method="POST" action="{{ route('login') }}">
                                             @csrf
 											<div class="col-12">
 												<label for="inputEmailAddress" class="form-label">Email Address</label>
-												<input type="email" name="email" class="form-control" id="email" placeholder="Email Address" value="admin@gmail.com">
+												<input type="email" name="email" class="form-control" id="email" placeholder="Email Address" value="vendor@gmail.com">
 											</div>
 											<div class="col-12">
 												<label for="inputChoosePassword" class="form-label">Enter Password</label>
