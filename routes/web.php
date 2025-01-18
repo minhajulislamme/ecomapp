@@ -37,8 +37,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
 //vendor routes==============================================================================================
 Route::middleware(['auth', 'vendor'])->group(function () {
     Route::get('/vendor/dashboard', [VendorController::class, 'VendorDashboard'])->name('vendor.dashboard');
+   Route::get('/vendor/logout', [VendorController::class, 'VendorDestroy'])->name('vendor.logout');
+    
 });
 
 
 //public routes==============================================================================================
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login');
