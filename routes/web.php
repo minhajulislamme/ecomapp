@@ -3,17 +3,23 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
-
 
 
 Route::get('/', function () {
     return view('frontend.index');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified', 'user'])->name('dashboard');
+//user routes==============================================================================================
+Route::middleware(['auth'])->group(function() { 
+    Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard'); 
+});
+
+
+// Route::get('/dashboard', function () {
+//     return view('index');
+// })->middleware(['auth', 'verified', 'user'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -22,6 +28,10 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+
+
+
 
 //admin routes==============================================================================================
 Route::middleware(['auth', 'admin'])->group(function () {
