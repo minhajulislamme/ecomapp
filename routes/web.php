@@ -13,21 +13,14 @@ Route::get('/', function () {
 
 //user routes==============================================================================================
 Route::middleware(['auth'])->group(function() { 
-    Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard'); 
+    Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
+    Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
 });
 
 
-// Route::get('/dashboard', function () {
-//     return view('index');
-// })->middleware(['auth', 'verified', 'user'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
-require __DIR__ . '/auth.php';
+
 
 
 
@@ -59,3 +52,26 @@ Route::middleware(['auth', 'vendor'])->group(function () {
 //public routes==============================================================================================
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+require __DIR__ . '/auth.php';

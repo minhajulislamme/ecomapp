@@ -34,7 +34,7 @@
                                     <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>Account details</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('profile.destroy')}}"><i class="fi-rs-sign-out mr-10"></i>Logout</a>
+                                    <a class="nav-link" href="{{route('user.logout')}}"><i class="fi-rs-sign-out mr-10"></i>Logout</a>
                                 </li>
                             </ul>
                         </div>
@@ -44,7 +44,7 @@
                             <div class="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="mb-0">Hello </h3>
+                                        <h3 class="mb-0">Hello {{Auth::user()->name}} </h3>
                                     </div>
                                     <div class="card-body">
                                         <p>
