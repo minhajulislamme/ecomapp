@@ -34,6 +34,9 @@
                                     <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>Account details</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" id="password-update-tab" data-bs-toggle="tab" href="#password-update" role="tab" aria-controls="password-update" aria-selected="true"><i class="fi-rs-user mr-10"></i>Password Update</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="{{route('user.logout')}}"><i class="fi-rs-sign-out mr-10"></i>Logout</a>
                                 </li>
                             </ul>
@@ -51,6 +54,10 @@
                                             From your account dashboard. you can easily check &amp; view your <a href="#">recent orders</a>,<br />
                                             manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit your password and account details.</a>
                                         </p>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label> <span class="required">*</span></label>
+                                        <img id="showImage" src="{{ (!empty($user->photo)) ? url('upload/user_images/'.$user->photo):url('upload/no_image.jpg') }}" alt="User" class="rounded-circle p-1 bg-primary" width="110">
                                     </div>
                                 </div>
                             </div>
@@ -165,37 +172,90 @@
                                         <h5>Account Details</h5>
                                     </div>
                                     <div class="card-body">
-                                        <p>Already have an account? <a href="page-login.html">Log in instead!</a></p>
-                                        <form method="post" name="enq">
+                                        {{-- <p>Already have an account? <a href="page-login.html">Log in instead!</a></p> --}}
+                                        <form method="POST" name="enq" action="{{route('user.profile.update')}}" enctype="multipart/form-data">
+                                            @csrf
                                             <div class="row">
                                                 <div class="form-group col-md-6">
-                                                    <label>First Name <span class="required">*</span></label>
-                                                    <input required="" class="form-control" name="name" type="text" />
+                                                    <label>User Name <span class="required">*</span></label>
+                                                    <input required="" class="form-control" name="username" type="text" value="{{$user->username}}" />
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label>Last Name <span class="required">*</span></label>
-                                                    <input required="" class="form-control" name="phone" />
+                                                    <label>Full Name <span class="required">*</span></label>
+                                                    <input required="" class="form-control" name="name" type="text" value="{{$user->name}}"/>
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                    <label>Display Name <span class="required">*</span></label>
-                                                    <input required="" class="form-control" name="dname" type="text" />
+                                                    <label>Email <span class="required">*</span></label>
+                                                    <input required="" class="form-control" name="email" type="email" value="{{$user->email}}" />
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                    <label>Email Address <span class="required">*</span></label>
-                                                    <input required="" class="form-control" name="email" type="email" />
+                                                    <label>Phone<span class="required">*</span></label>
+                                                    <input required="" class="form-control" name="phone" type="number" value="{{$user->phone}}" />
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                    <label>Current Password <span class="required">*</span></label>
-                                                    <input required="" class="form-control" name="password" type="password" />
+                                                    <label>Address<span class="required">*</span></label>
+                                                    <input required="" class="form-control" name="address" type="text" value="{{$user->address}}" />
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                    <label>New Password <span class="required">*</span></label>
-                                                    <input required="" class="form-control" name="npassword" type="password" />
+                                                    <label>User Photo <span class="required">*</span></label>
+                                                    <input class="form-control" name="photo" type="file"  id="image" />
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                    <label>Confirm Password <span class="required">*</span></label>
-                                                    <input required="" class="form-control" name="cpassword" type="password" />
+                                                    <label> <span class="required">*</span></label>
+                                                    <img id="showImage" src="{{ (!empty($user->photo)) ? url('upload/user_images/'.$user->photo):url('upload/no_image.jpg') }}" alt="User" class="rounded-circle p-1 bg-primary" width="110">
                                                 </div>
+                                                <div class="col-md-12">
+                                                    <button type="submit" class="btn btn-fill-out submit font-weight-bold" name="submit" value="Submit">Save Change</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="password-update" role="tabpanel" aria-labelledby="password-update-tab">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Password Update</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        {{-- <p>Already have an account? <a href="page-login.html">Log in instead!</a></p> --}}
+                                        <form method="post" action="{{ route('user.profile.store') }}" > 
+                                            @csrf
+                                         @if (session('status'))
+                                         <div class="alert alert-success" role="alert">
+                                                {{session('status')}}
+                                         </div>
+                                         @elseif(session('error'))
+                                         <div class="alert alert-danger" role="alert">
+                                            {{session('error')}}
+                                         </div>
+                                         @endif
+                                <div class="row">
+                                    
+                                    <div class="form-group col-md-12">
+                                        <label>Old Password <span class="required">*</span></label>
+                                        <input  class="form-control @error('old_password') is-invalid @enderror"  name="old_password" type="password" id="current_password"    placeholder="Old Password"  />
+                                        @error('old_password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                      <div class="form-group col-md-12">
+                                        <label>New Password <span class="required">*</span></label>
+                                        <input  class="form-control @error('new_password') is-invalid @enderror"  name="new_password" type="password" id="new_password"   placeholder="New Password"  />
+                                        
+                                        @error('new_password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                      <div class="form-group col-md-12">
+                                        <label>Confirm New Password <span class="required">*</span></label>
+                                        <input  class="form-control"  name="new_password_confirmation" type="password" id="new_password_confirmation"  placeholder="Confirm New Password"  /> 
+                                       
+                                    </div>
+                                    
+                                   
+                                                
                                                 <div class="col-md-12">
                                                     <button type="submit" class="btn btn-fill-out submit font-weight-bold" name="submit" value="Submit">Save Change</button>
                                                 </div>
@@ -212,4 +272,15 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('image').addEventListener('change', function(e) {
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('showImage').setAttribute('src', e.target.result);
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        });
+    });
+</script>
 @endsection
