@@ -22,6 +22,9 @@
     <link href="{{ asset('adminbackend/assets/css/icons.css') }}" rel="stylesheet">
    <!---Tostar CSS-->
    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+   <!-- DataTable -->
+	<link href="{{ asset('adminbackend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+    <!-- DataTable-->
 
     <!-- Theme Style CSS -->
     <link rel="stylesheet" href="{{ asset('adminbackend/assets/css/dark-theme.css') }}" />
@@ -102,6 +105,20 @@
         }
         @endif
        </script>
+    <!--Form Validatin Script-->
+        <script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>
+<!--Datatable-->
+<script src="{{ asset('adminbackend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+<script>
+		$(document).ready(function() {
+			$('#example').DataTable();
+		  } );
+	</script>
+<!--Datatable-->
+<!--Sweet Alert-->
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+ <script src="{{ asset('adminbackend/assets/js/code.js') }}"></script>
 
 </body>
 
