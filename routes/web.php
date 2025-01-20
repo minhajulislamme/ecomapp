@@ -1,28 +1,48 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
+
 
 
 Route::get('/', function () {
     return view('frontend.index');
 });
 
-//user routes==============================================================================================
+//user routes loging ==============================================================================================
 Route::middleware(['auth'])->group(function() { 
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
     Route::post('/user/profile/update', [UserController::class, 'UserProfileUpdate'])->name('user.profile.update');
     Route::post('/user/password/store', [UserController::class, 'UserPasswordStore'])->name('user.profile.store');
+
+
+
+
+
+
 });
+//admin all route group===================================================================================
+Route::middleware(['auth'])->group(function() { 
+// Brand Routes ===========================================================================================
+    Route::controller(BrandController::class)->group(function(){
+        Route::get('/all/brands', 'AllBrands')->name('all.brands');
+        Route::get('/add/brand', 'AddBrand')->name('add.brand');
+        Route::post('/store/brand', 'StoreBrand')->name('store.brand');
+        Route::get('/edit/brand/{id}', 'EditBrand')->name('edit.brand');
+        Route::post('/update/brand', 'UpdateBrand')->name('update.brand');
+        Route::get('/delete/brand/{id}', 'DeleteBrand')->name('delete.brand');
+
+    });
 
 
 
 
-
+});
 
 
 
