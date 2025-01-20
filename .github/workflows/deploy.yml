@@ -48,6 +48,10 @@ jobs:
         password: ${{ secrets.VPS_PASSWORD }}
         script: |
           cd /var/www/html/ecomapp
+          sudo chown -R $USER:www-data .
+          sudo find . -type f -exec chmod 664 {} \;
+          sudo find . -type d -exec chmod 775 {} \;
+          sudo chmod -R 777 ~
           sudo chown -R www-data:www-data /var/www/html/ecomapp
           sudo chmod -R 775 /var/www/html/ecomapp/storage
           sudo chmod -R 775 /var/www/html/ecomapp/bootstrap/cache
@@ -58,5 +62,6 @@ jobs:
           php artisan route:cache
           php artisan view:cache
           
+         
           
           
