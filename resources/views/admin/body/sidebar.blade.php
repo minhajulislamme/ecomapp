@@ -29,7 +29,7 @@
             <ul>
                 <li> <a href="{{route('all.brands')}}"><i class="bx bx-right-arrow-alt"></i>All Brand</a>
                 </li>
-                <li> <a href="{{ route('add.brand') }}"><i class="bx bx-right-arrow-alt"></i>All Brand</a>
+                <li> <a href="{{ route('add.brand') }}"><i class="bx bx-right-arrow-alt"></i>Add Brand</a>
                 </li>
                 
                 
