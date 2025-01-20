@@ -23,6 +23,11 @@ class BrandController extends Controller
 
     public function StoreBrand(Request $request)
     {
+        $dir = base_path('public/upload/brand_images');
+        if(!file_exists($dir)){
+            mkdir($dir, 0777, true);
+        }
+
         $request->validate([
             'brand_name' => 'required',
             'brand_image' => 'required',
@@ -54,7 +59,11 @@ class BrandController extends Controller
 
     public function UpdateBrand(Request $request, )
     {
-       
+       $dir = base_path('public/upload/brand_images');
+        if(!file_exists($dir)){
+            mkdir($dir, 0777, true);
+        }
+        
         $brand_id = $request->id;
         $old_img = $request->old_image;
        
